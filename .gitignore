@@ -1,0 +1,29 @@
+# 数据集（按 README 从 LoveDA 官方渠道下载）
+LDA/
+
+# 模型权重（从 GitHub Release / Hugging Face Hub 下载）
+checkpoints/
+
+# 运行产物
+outputs/
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# 本地配置
+.claude/settings.local.json
+.claude/scheduled_tasks.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
