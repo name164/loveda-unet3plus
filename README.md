@@ -16,6 +16,7 @@
 cd D:/agent/cc/loveda
 
 python gui.py                      # 可视化界面（推荐入口）
+python app.py                      # Web 演示（http://127.0.0.1:7860）
 python inspect_model.py            # 先确认模型结构正常（17 项自查）
 python train.py                    # 训练（会自动从 last.pt 续训）
 python eval.py --split test        # 完整滑窗评测，约 56 分钟
@@ -37,6 +38,19 @@ python eval.py --split test        # 完整滑窗评测，约 56 分钟
 > ⚠️ 这台机器上 **PyQt5 和 PyQt6 同时装着**。`gui.py` 里的 import 顺序
 > （`QT_API` → PyQt5 → matplotlib）**不能重排**，否则 matplotlib 会挑中 PyQt6，
 > 画布控件塞进 PyQt5 布局直接报 `TypeError`。详见 `gui.py` 顶部注释。
+
+---
+
+## Web 演示
+
+```bash
+python app.py
+# 浏览器打开 http://127.0.0.1:7860，上传任意遥感图即可在线分割
+```
+
+部署到 ModelScope 创空间 / Hugging Face Spaces：使用根目录的 `requirements.txt`，
+权重放到 `checkpoints/best.pt`（或设环境变量 `CKPT_PATH`），启动命令 `python app.py`。
+平台注入的 `GRADIO_SERVER_NAME` / `GRADIO_SERVER_PORT` 会自动生效。
 
 ---
 

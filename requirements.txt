@@ -1,0 +1,7 @@
+torch>=2.0
+gradio>=4.0
+numpy
+opencv-python-headless
+pillow
+albumentations
+tqdm
