@@ -44,6 +44,8 @@ CSS = """
 def predict(files, quality, progress=gr.Progress()):
     if not files:
         raise gr.Error('请先上传图片，或点击左侧示例图片')
+    if isinstance(files, str):
+        files = [files]
     if len(files) > MAX_BATCH:
         raise gr.Error(f'一次最多处理 {MAX_BATCH} 张图片')
 
@@ -87,6 +89,10 @@ with gr.Blocks(title='LoveDA UNet3+ 语义分割') as demo:
         with gr.Column(scale=3, min_width=320):
             files = gr.Files(label='上传图片（可多选）',
                              file_count='multiple', file_types=['image'])
+            preview = gr.Gallery(label='原图预览', columns=3, height=200,
+                                 object_fit='contain', interactive=False,
+                                 show_label=False)
+            files.change(lambda fs: fs or [], files, preview)
             quality = gr.Radio(['标准（512/256）', '快速（512/512）'],
                                value='标准（512/256）', label='滑窗模式')
             btn = gr.Button('开始检测', variant='primary')
